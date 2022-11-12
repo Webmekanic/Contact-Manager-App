@@ -1,10 +1,14 @@
 const express = require("express")
 const router = express.Router()
+const { body, validationResult, check } = require("express-validator")
+const User = require("../models/User")
+const Contact = require("../models/Contact")
+const auth = require("../middleware/auth")
 
 // @route     GET api/contacts
 // @desc      Get all users contact
 // @access    Private
-router.get("/", (req, res) => {
+router.get("/", auth, (req, res) => {
   res.send("Get all contacts")
 })
 
