@@ -8,8 +8,16 @@ const auth = require("../middleware/auth")
 // @route     GET api/contacts
 // @desc      Get all users contact
 // @access    Private
-router.get("/", auth, (req, res) => {
-  res.send("Get all contacts")
+router.get("/", auth, async (req, res) => {
+  try {
+    const contacts = await Contact.find({ user: req.user.id }).sort({
+      date: -1,
+    })
+    res.json(contacts)
+  } catch (error) {
+    console.error(errr.message)
+    res.status(500).send("Server error")
+  }
 })
 
 // @route     POST api/contacts
