@@ -45,23 +45,26 @@ const ContactState = (props) => {
   // Add contact
   const addContact = (contact) => {
     contact.id = uuidv4()
-    dispatch({ type: "ADD_CONTACT", payload: contact })
+    dispatch({ type: ADD_CONTACT, payload: contact })
   }
 
   // Delete contact
   const deleteContact = (id) => {
-    dispatch({ type: "DELETE_CONTACT", payload: id })
+    dispatch({ type: DELETE_CONTACT, payload: id })
   }
 
   // Set current contact
   const setCurrent = (contact) => {
-    dispatch({ type: "SET_CURRENT", payload: contact })
+    dispatch({ type: SET_CURRENT, payload: contact })
   }
   // clear current contact
   const clearCurrent = () => {
-    dispatch({ type: "CLEAR_CURRENT" })
+    dispatch({ type: CLEAR_CURRENT })
   }
   // Update contact
+  const updateCurrent = (contact) => {
+    dispatch({ type: UPDATE_CONTACT, payload: contact })
+  }
   // Filter contacts
   // clear filter
 
@@ -74,6 +77,7 @@ const ContactState = (props) => {
         deleteContact,
         setCurrent,
         clearCurrent,
+        updateCurrent,
       }}
     >
       {props.children}
