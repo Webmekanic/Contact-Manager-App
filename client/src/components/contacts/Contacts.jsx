@@ -1,6 +1,7 @@
 import React, { useContext, Fragment } from "react"
 import ContactContext from "../../context/contact/contactContext"
 import ContactsItem from "./ContactsItem"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 const Contacts = () => {
   const contactContext = useContext(ContactContext)
