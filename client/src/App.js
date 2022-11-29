@@ -9,7 +9,12 @@ import ContactState from "./context/contact/ContactState"
 import AuthState from "./context/auth/AuthState"
 import AlertState from "./context/alert/AlertState"
 import Alerts from "./components/layouts/Alerts"
+import setAuthToken from "./utils/setAuthToken"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token)
+}
 
 const App = () => {
   return (
