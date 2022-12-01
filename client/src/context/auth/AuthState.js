@@ -38,6 +38,7 @@ const AuthState = (props) => {
       dispatch({ type: AUTH_ERROR })
     }
   }
+
   // Register User
   const register = async (formData) => {
     const config = {
