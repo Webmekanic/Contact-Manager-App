@@ -11,6 +11,7 @@ import AlertState from "./context/alert/AlertState"
 import Alerts from "./components/layouts/Alerts"
 import setAuthToken from "./utils/setAuthToken"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import PrivateRoutes from "./components/routing/PrivateRoutes"
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
@@ -27,7 +28,9 @@ const App = () => {
               <div className="container">
                 <Alerts />
                 <Routes>
-                  <Route path="/" element={<Home />} />
+                  <Route element={<PrivateRoutes />}>
+                    <Route path="/" element={<Home />} />
+                  </Route>
                   <Route path="/about" element={<About />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
