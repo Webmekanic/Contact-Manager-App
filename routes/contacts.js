@@ -15,7 +15,7 @@ router.get("/", auth, async (req, res) => {
     })
     res.json(contacts)
   } catch (error) {
-    console.error(errr.message)
+    // console.error(errr.message)
     res.status(500).send("Server error")
   }
 })
@@ -25,7 +25,7 @@ router.get("/", auth, async (req, res) => {
 // @access    Private
 router.post(
   "/",
-  [auth, [check("name", "Name is required").not().isEmpty()]],
+  [auth, [check("name", "Name is required").not().isEmail()]],
   async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -35,7 +35,7 @@ router.post(
     const { name, email, phone, type } = req.body
 
     try {
-      const newContact = new Contact({
+      const newContact = new Contacts({
         name,
         email,
         phone,
@@ -45,9 +45,9 @@ router.post(
 
       const contact = await newContact.save()
       res.json(contact)
-    } catch (err) {
-      console.error(err.message)
-      res.status(500).send("Server error")
+    } catch (error) {
+      console.error(error.message)
+      res.status(500).send("Server Error")
     }
   }
 )
