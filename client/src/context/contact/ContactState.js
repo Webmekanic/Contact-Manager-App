@@ -27,21 +27,20 @@ const ContactState = (props) => {
   const addContact = async (contact) => {
     const config = {
       headers: {
-        "content-type": "application/json",
+        "Content-type": "application/json",
       },
     }
 
     try {
       const res = await axios.post("/api/contacts", contact, config)
-      console.log(res.data)
       dispatch({
         type: ADD_CONTACT,
         payload: res.data,
       })
-    } catch (err) {
+    } catch (error) {
       dispatch({
         type: CONTACT_ERROR,
-        payload: err.response.msg,
+        payload: error.response.msg,
       })
     }
   }

@@ -25,7 +25,7 @@ router.get("/", auth, async (req, res) => {
 // @access    Private
 router.post(
   "/",
-  [auth, [check("name", "Name is required").not().isEmail()]],
+  [auth, [check("name", "Name is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -35,7 +35,7 @@ router.post(
     const { name, email, phone, type } = req.body
 
     try {
-      const newContact = new Contacts({
+      const newContact = new Contact({
         name,
         email,
         phone,
